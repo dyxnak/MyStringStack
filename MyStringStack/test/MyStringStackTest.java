@@ -1,14 +1,14 @@
 import java.lang.IndexOutOfBoundsException;
 import static org.junit.Assert.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class MyStringStackTest {
 	private String s1,s2;
 	private MyStringStack stack;
 	
-	@BeforeEach
+	@Before
 	public void setUp() throws Exception{
 		s1 = "Hello";
 		s2 = "World!";
@@ -127,8 +127,9 @@ public class MyStringStackTest {
 	}
 	
 
-	@AfterEach
+	@After
 	public void tearDown() throws Exception {
+		
 	}
 
 
