@@ -128,7 +128,7 @@ public class MyStringStackTest {
 	
 
 	@AfterEach
-	void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 	}
 
 
