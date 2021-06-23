@@ -1,10 +1,13 @@
-import java.lang.IndexOutOfBoundsException;
 import static org.junit.Assert.*;
+
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MyStringStackTest {
+
 	private String s1,s2;
 	private MyStringStack stack;
 	
@@ -14,16 +17,23 @@ public class MyStringStackTest {
 		s2 = "World!";
 		stack = new MyStringStack();		
 	}
+	
 	@Test
-	public void pushTest(){
+	public void testPush(){
+		//Empty stack is still empty after pushing a null element 
+		assertTrue(stack.isEmpty());
+		String o1 = null;
+		stack.push(o1);
+		assertTrue(stack.isEmpty());
+		
+		//New stack is empty, after pushing an s1 element, stack is no longer empty
 		assertTrue(stack.isEmpty());
 		stack.push(s1);
-		stack.push(s2);
 		assertFalse(stack.isEmpty());	
 	}
 	
 	@Test
-	public void popTest(){
+	public void testPop(){
 		String o1 = null;
 		assertTrue("Initial Stack state: ",stack.isEmpty());
 		try {
@@ -31,8 +41,7 @@ public class MyStringStackTest {
 			fail();			
 		}catch (IndexOutOfBoundsException e) {}		
 		stack.push(s1);
-		assertFalse("Stack should not be empty after push", 
-				stack.isEmpty());
+		assertFalse("Stack should not be empty after push", stack.isEmpty());
 		try {
 			o1= stack.pop();			
 		}catch (IndexOutOfBoundsException e) {
@@ -40,10 +49,9 @@ public class MyStringStackTest {
 		}
 		assertSame (s1,o1);
 		assertTrue(stack.isEmpty());
-	}
-	
+	}	
 	@Test
-	public void isEmptyTest(){
+	public void testIsEmpty(){
 		String s3 = null;
 		assertTrue(stack.isEmpty());
 		stack.push(s1);
@@ -58,7 +66,7 @@ public class MyStringStackTest {
 	}
 	
 	@Test
-	public void clearTest(){
+	public void testClear(){
 		String o1 = null;		
 		assertTrue("stack should be empty", stack.isEmpty());
 		stack.push(s1);
@@ -73,10 +81,10 @@ public class MyStringStackTest {
 	}
 	
 	@Test
-	public void stackNullTest(){
+	public void testStackNull(){
 		String o1 = null;	
 		assertTrue(stack.isEmpty());
-		stack.push(null);
+		stack.push(o1);
 		assertTrue(stack.isEmpty());
 		stack.push(null);
 		stack.push(s1);
@@ -100,7 +108,7 @@ public class MyStringStackTest {
 
 	
 	@Test
-	public void stackSequenceTest(){
+	public void testStackSequence(){
 		String o1 = null;
 
 		assertTrue(stack.isEmpty());
@@ -129,9 +137,7 @@ public class MyStringStackTest {
 
 	@After
 	public void tearDown() throws Exception {
-		
 	}
-
 
 
 }
