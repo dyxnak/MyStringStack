@@ -30,8 +30,8 @@ public class MyStringStack {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String s1 = "Hello";
-		String s2 = "World!";
+		String s1 = "World!";
+		String s2 = "Hello";
 		MyStringStack stack = new MyStringStack();
 		System.out.println(stack.isEmpty());
 		stack.push(s1);
