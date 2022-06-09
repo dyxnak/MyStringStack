@@ -8,38 +8,53 @@ import org.junit.Test;
 
 public class MyStringStackTest {
 
-	private String s1,s2;
+	private String s1,s2, s3, o1, o2;
 	private MyStringStack stack;
 	
 	@Before
 	public void setUp() throws Exception{
 		s1 = "Hello";
-		s2 = "World!";
-		stack = new MyStringStack();		
+		s2 = "World";
+		s3 = "!";
+		o1 = null;
+		o2 = null;		
 	}
 	
 	@Test
-	public void testPush(){
+	public void testPushWithNullObj(){
 		//Empty stack is still empty after pushing a null element 
-		assertTrue(stack.isEmpty());
-		String o1 = null;
-		stack.push(o1);
+		stack = new MyStringStack();
 		assertTrue(stack.isEmpty());
 		
-		//New stack is empty, after pushing an s1 element, stack is no longer empty
+		stack.push(o1);
 		assertTrue(stack.isEmpty());
+	}
+	@Test
+	public void testPushWithObj() {
+		//new empty a stack, push a Not Null element, the stack is not empty
+		stack = new MyStringStack();
 		stack.push(s1);
 		assertFalse(stack.isEmpty());	
+		// push another not null element s1, the stack size is 2
+		stack.push(s1);
+		assertEquals("the stack shall have 2 elements", 2, stack.size());
+		//  push a null element and the pop the element,  it is the previously not null elements pushed in, its s1
+		stack.push(o1);
+		String o2= stack.pop();
+		assertNotNull(o2);
+		assertSame(s1, o2);
+		assertEquals(s1, o2);
 	}
 	
 	@Test
 	public void testPop(){
-		String o1 = null;
+		stack = new MyStringStack();
 		assertTrue("Initial Stack state: ",stack.isEmpty());
 		try {
 			o1= stack.pop();
 			fail();			
-		}catch (IndexOutOfBoundsException e) {}		
+		}catch (IndexOutOfBoundsException e) {}	
+		//New stack is empty, after pushing one element s1, stack is no longer empty
 		stack.push(s1);
 		assertFalse("Stack should not be empty after push", stack.isEmpty());
 		try {
@@ -47,32 +62,39 @@ public class MyStringStackTest {
 		}catch (IndexOutOfBoundsException e) {
 			fail();
 		}
+		//check the popped up element o1 should be same as s1, the last element pushed
 		assertSame (s1,o1);
+		// after pop up, the stack becomes empty
 		assertTrue(stack.isEmpty());
 	}	
 	@Test
 	public void testIsEmpty(){
-		String s3 = null;
+		stack = new MyStringStack();
+
 		assertTrue(stack.isEmpty());
 		stack.push(s1);
 		assertFalse(stack.isEmpty());	
 		try{
-			s3 = stack.pop();
+			o2 = stack.pop();
 		}catch (IndexOutOfBoundsException e){
 			fail();
 		}
-		assertSame(s1, s3);
+		assertSame(s1, o2);
 		assertTrue(stack.isEmpty());
 	}
 	
 	@Test
 	public void testClear(){
-		String o1 = null;		
+		stack = new MyStringStack();
+
 		assertTrue("stack should be empty", stack.isEmpty());
 		stack.push(s1);
 		stack.push(s2);
+		stack.push(s3);
+		// after push two elements the stack is not empty
 		assertFalse("stack should not be empty",stack.isEmpty());
 		stack.clear();
+		// after call the clear() method, check if the stack is empty
 		assertTrue(stack.isEmpty());
 		try{
 			o1= stack.pop();
@@ -82,7 +104,8 @@ public class MyStringStackTest {
 	
 	@Test
 	public void testStackNull(){
-		String o1 = null;	
+		stack = new MyStringStack();
+
 		assertTrue(stack.isEmpty());
 		stack.push(o1);
 		assertTrue(stack.isEmpty());
@@ -109,7 +132,7 @@ public class MyStringStackTest {
 	
 	@Test
 	public void testStackSequence(){
-		String o1 = null;
+		stack = new MyStringStack();
 
 		assertTrue(stack.isEmpty());
 		stack.push(s1);

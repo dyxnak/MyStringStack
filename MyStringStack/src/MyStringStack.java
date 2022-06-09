@@ -26,18 +26,23 @@ public class MyStringStack {
 	public void clear(){
 		v = new ArrayList<String> ();		
 	}
+	
+	public int size(){
+		return v.size();		
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String s1 = "World!";
-		String s2 = "Hello";
+		String s1 = "Hello";
+		String s2 = "World";
+		String s3 = "!!";
 		MyStringStack stack = new MyStringStack();
-		System.out.println(stack.isEmpty());
+		System.out.println("Is the new Stack empty? " + stack.isEmpty());
 		stack.push(s1);
 		stack.push(s2);
-		
-		System.out.println(stack.pop() + " "+ stack.pop());
+		stack.push(s3);
+		System.out.println(stack.pop() + " "+ stack.pop()+ " "+ stack.pop());
 
 	}
 
